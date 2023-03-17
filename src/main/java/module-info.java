@@ -4,6 +4,8 @@ module com.example.demo {
     requires java.sql;
     requires org.controlsfx.controls;
     requires AnimateFX;
+    requires javax.mail.api;
+    requires activation;
 
 
     opens com.example.demo to javafx.fxml;

@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(HelloApplication.class.getResource("screens/sign-in.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 610);
-        stage.setTitle("Hello!");
+        stage.setTitle("Sign in - Encrypto");
         stage.setScene(scene);
         stage.show();
     }

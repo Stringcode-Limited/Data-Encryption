@@ -1,5 +1,5 @@
 .logo{
-    -fx-text-fill: rgb(84,84,208) !important;
+    -fx-text-fill: royalblue !important;
 }
 .button {
     -fx-alignment: CENTER;
@@ -65,7 +65,7 @@
   
   .form-content .text-field:focused,
   .form-content .text-area:focused {
-    -fx-border-color: rgb(74,72,150);
+    -fx-border-color: royalblue;
     -fx-border-width: 2;
   }
   
@@ -81,11 +81,11 @@
     -fx-background-radius: 5;
     -fx-padding: 8 10 8 10;
     -fx-cusor: pointer;
-    -fx-background-color: rgb(84,84,208);
+    -fx-background-color: royalblue;
 }
 
 .img-container{
-    -fx-background-color: rgb(84,84,208);
+    -fx-background-color: royalblue;
     /* -fx-background-color: whitesmoke; */
 }
 

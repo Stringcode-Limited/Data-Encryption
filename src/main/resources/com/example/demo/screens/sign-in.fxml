@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -18,12 +16,7 @@
          <children>
             <HBox alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="356.0">
                <children>
-                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../ICONS/icons8_panda_50px.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Panda">
+                  <Label text="ENCRYPTO">
                      <font>
                         <Font name="Arial Italic" size="35.0" />
                      </font>
@@ -68,12 +61,12 @@
                   <Label fx:id="loginPasswordError" styleClass="error-message" />
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="112.0" prefHeight="56.0" prefWidth="334.0" styleClass="form-content">
+            <VBox layoutX="10.0" layoutY="112.0" prefHeight="43.0" prefWidth="334.0" styleClass="form-content">
                <children>
                   <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="334.0" text="Sign in" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <VBox fx:id="loginAlert" alignment="CENTER" fillWidth="false" prefHeight="91.0" prefWidth="334.0" styleClass="success-alert">
+            <VBox fx:id="loginAlert" alignment="CENTER" fillWidth="false" prefHeight="1.0" prefWidth="334.0" styleClass="success-alert">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="321.0">
                      <children>
@@ -82,6 +75,18 @@
                   </HBox>
                </children>
             </VBox>
+            <HBox prefHeight="52.0" prefWidth="334.0" style="-fx-alignment: CENTER;">
+               <children>
+                  <Label fx:id="signUpText" text="Sign up" textFill="ROYALBLUE">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label text=" if you don't have an account">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

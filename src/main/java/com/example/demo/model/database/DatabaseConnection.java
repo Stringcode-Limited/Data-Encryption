@@ -10,11 +10,11 @@ public class DatabaseConnection {
 
     static Statement statement;
 
-    final String jdbcUrl = "jdbc:h2:./construction_office_automation";
+    final String jdbcUrl = "jdbc:h2:./data_encrypt";
 
     public boolean dbConnect(){
         try{
-            connection = DriverManager.getConnection(jdbcUrl,"","panda");
+            connection = DriverManager.getConnection(jdbcUrl,"encrypt","encrypt");
             return true;
         }catch (SQLException se){
             se.printStackTrace();

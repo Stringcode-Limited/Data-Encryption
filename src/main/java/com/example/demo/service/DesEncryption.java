@@ -10,46 +10,17 @@ import java.util.Arrays;
 
 public class DesEncryption {
 
-    public String encrypt(String message, String keyString) {
-
-        byte[] keyBytes = Arrays.copyOf(keyString.getBytes (StandardCharsets.UTF_8), 8);
-
-        SecretKey key = new SecretKeySpec(keyBytes, "DES");
-
-        Cipher cipher;
+    private static final String ALGORITHM = "DES";
+    public byte[] encrypt(String plaintext, String KEY) {
 
         try {
-
-            cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-
-        } catch (NoSuchAlgorithmException e) {
-
-            throw new RuntimeException(e);
-
-        } catch (NoSuchPaddingException e) {
-
-            throw new RuntimeException(e);
-        }
-        try {
-
+            SecretKey key = new SecretKeySpec(KEY.getBytes(), ALGORITHM);
+            Cipher cipher = Cipher.getInstance(ALGORITHM + "/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, key);
-
-        } catch (InvalidKeyException e) {
-
-            throw new RuntimeException(e);
+            return cipher.doFinal(plaintext.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        byte[] encrypted;
-        try {
-            encrypted = cipher.doFinal(message.getBytes("UTF-8"));
-        } catch (IllegalBlockSizeException e) {
-            throw new RuntimeException(e);
-        } catch (BadPaddingException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-
-        return new String(encrypted);
+        return null;
     }
 }

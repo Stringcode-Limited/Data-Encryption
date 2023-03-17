@@ -35,11 +35,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -47,47 +43,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="536.0" prefWidth="640.0" stylesheets="@../styles/admin-dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.AdminController">
+<VBox prefHeight="601.0" prefWidth="756.0" stylesheets="@../styles/admin-dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.UserController">
     <children>
-        <MenuBar styleClass="top_menu_bar" VBox.vgrow="NEVER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="Revert" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Quit" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="535.0" spacing="10.0" style="-fx-alignment: CENTER; -fx-background-color: royalblue;">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: CENTER-LEFT;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="37.0" prefWidth="202.0" text="ENCRYPTO" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userEmailLabel" prefHeight="24.0" prefWidth="318.0" text="test@gmail.com" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: CENTER-RIGHT;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" text="logout" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
             <children>
                 <HBox layoutX="76.0" layoutY="67.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -98,61 +81,55 @@
                                     <children>
                                         <VBox layoutX="20.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
-                                                <HBox prefHeight="66.0" prefWidth="560.0" spacing="10.0" style="-fx-alignment: CENTER_LEFT;">
-                                                    <children>
-                                                        <Label text="Welcome">
-                                                            <font>
-                                                                <Font name="System Bold" size="20.0" />
-                                                            </font>
-                                                        </Label>
-                                                        <Label layoutX="10.0" layoutY="13.0" text="Peter Johnson">
-                                                            <font>
-                                                                <Font name="System Bold" size="20.0" />
-                                                            </font>
-                                                        </Label>
-                                                    </children>
-                                                </HBox>
                                                 <VBox prefHeight="369.0" prefWidth="560.0" styleClass="form_content" VBox.vgrow="ALWAYS">
                                                     <children>
                                                         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: CENTER-LEFT;">
                                                             <children>
-                                                                <Button mnemonicParsing="false" text="Import file" />
+                                                                <Button mnemonicParsing="false" onAction="#onImportFile" text="Import file" />
                                                             </children>
+                                             <opaqueInsets>
+                                                <Insets left="60.0" right="60.0" />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets left="60.0" right="60.0" />
+                                             </padding>
                                                         </HBox>
                                                         <HBox prefHeight="273.0" prefWidth="560.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                                             <children>
-                                                                <TextArea fx:id="plainTextArea" prefHeight="82.0" prefWidth="342.0" promptText="Enter text to be encrypted" HBox.hgrow="ALWAYS" />
-                                                                <TextArea fx:id="encryptedTextArea" layoutX="10.0" layoutY="10.0" prefHeight="82.0" prefWidth="342.0" promptText="Decrypted text" HBox.hgrow="ALWAYS" />
+                                                                <TextArea fx:id="encryptedTextArea" prefHeight="82.0" prefWidth="342.0" promptText="Enter encrypted file" HBox.hgrow="ALWAYS" />
+                                                                <TextArea fx:id="plainTextArea" layoutX="10.0" layoutY="10.0" prefHeight="82.0" prefWidth="342.0" promptText="Decrypted text" HBox.hgrow="ALWAYS" />
                                                             </children>
+                                             <opaqueInsets>
+                                                <Insets left="60.0" right="60.0" />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets left="60.0" right="60.0" />
+                                             </padding>
                                                         </HBox>
                                                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" style="-fx-alignment: CENTER-LEFT;">
                                                             <children>
                                                                 <HBox prefHeight="95.0" prefWidth="349.0" spacing="10.0" style="-fx-alignment: CENTER-LEFT;">
                                                                     <children>
                                                                         <TextField fx:id="keyTextField" promptText="Key" />
-                                                                        <Button fx:id="encrypBtn" mnemonicParsing="false" onAction="#onEncrypt" text="Encrypt" />
+                                                                        <Button fx:id="decryptBtn" mnemonicParsing="false" onAction="#onDecrypt" text="Decrypt" />
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: CENTER-RIGHT;" HBox.hgrow="ALWAYS">
-                                                                    <children>
-                                                                        <Button mnemonicParsing="false" onAction="#onDecrypt" text="Decrypt" />
-                                                                    </children>
-                                                                </HBox>
+                                                                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: CENTER-RIGHT;" HBox.hgrow="ALWAYS" />
                                                             </children>
+                                             <opaqueInsets>
+                                                <Insets left="60.0" right="60.0" />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets left="60.0" right="60.0" />
+                                             </padding>
                                                         </HBox>
                                                     </children>
                                                 </VBox>
                                             </children>
                                         </VBox>
                                     </children>
-                                    <padding>
-                                        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
-                                    </padding>
                                 </AnchorPane>
                             </content>
-                            <padding>
-                                <Insets top="5.0" />
-                            </padding>
                         </ScrollPane>
                     </children>
                 </HBox>

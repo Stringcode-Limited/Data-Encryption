@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.HelloApplication;
-import com.example.demo.model.MailOptions;
 import com.example.demo.model.Session;
 import com.example.demo.service.DesDecryption;
 import com.example.demo.service.DesEncryption;
-import com.example.demo.service.MailSender;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -29,14 +26,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.example.demo.enums.Validation.EMAIL;
-
-public class AdminController extends Thread implements Initializable {
+public class UserController extends Thread implements Initializable {
     final FileChooser fileChooser = new FileChooser();
 
     @FXML
@@ -46,48 +38,44 @@ public class AdminController extends Thread implements Initializable {
     private TextArea encryptedTextArea;
 
     @FXML
-    private TextField keyTextField, recipientEmail;
+    private TextField keyTextField;
 
     @FXML
-    private Button encrypBtn, logoutBtn;
+    private Button decryptBtn, logoutBtn;
 
     @FXML
     private Label userEmailLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        FileChooser fileChooser = new FileChooser();
 
-        encrypBtn.setDisable(true);
+        decryptBtn.setDisable(true);
 
         plainTextArea.setOnKeyPressed(e ->{
-            if(e.getText().isEmpty() && keyTextField.getText().isEmpty()) encrypBtn.setDisable(true);
-            else encrypBtn.setDisable(false);
+            if(e.getText().isEmpty() && keyTextField.getText().isEmpty()) decryptBtn.setDisable(true);
+            else decryptBtn.setDisable(false);
         });
 
         keyTextField.setOnKeyPressed(e ->{
-           if(e.getText().isEmpty() && plainTextArea.getText().isEmpty()) encrypBtn.setDisable(true);
-           else encrypBtn.setDisable(false);
+            if(e.getText().isEmpty() && plainTextArea.getText().isEmpty()) decryptBtn.setDisable(true);
+            else decryptBtn.setDisable(false);
         });
 
 
         encryptedTextArea.setOnKeyPressed(e ->{
             System.out.println(e.getText());
         });
-
         logoutBtn.setOnAction(e -> switchSence(e, "screens/sign-in.fxml","Sign in - Encrypto"));
-
     }
-//   FUNCTION TO SHOW FILE-CHOOSER
 
     public File displayFileChooser(String title) {
         fileChooser.setTitle(title);
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All Images", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.png", "*.jpg", "*.jpeg"));
         File file = fileChooser.showOpenDialog(null);
         return file;
     }
 
-    public void switchSence(Event event, String fxml, String title) {
+    public void switchSence(Event event, String fxml,String title) {
 
         try {
             FXMLLoader pane = new FXMLLoader(HelloApplication.class.getResource(fxml));
@@ -102,6 +90,7 @@ public class AdminController extends Thread implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     public void switchActiveLink(HBox[] links, HBox activeLink) {
 
@@ -122,7 +111,7 @@ public class AdminController extends Thread implements Initializable {
     }
 
 
-    public void toast(String title, String message, Pos postion) {
+    public void toast(String title, String message,Pos postion) {
         Notifications notificationsBuilder = Notifications.create()
                 .title(title)
                 .text(message)
@@ -149,7 +138,7 @@ public class AdminController extends Thread implements Initializable {
                     sb.append(line);
                     sb.append("\n");
                 }
-                plainTextArea.setText(sb.toString());
+                encryptedTextArea.setText(sb.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -157,58 +146,27 @@ public class AdminController extends Thread implements Initializable {
     }
 
 
+
+
     @FXML
-    protected  void onEncrypt() {
-        String message = plainTextArea.getText();
+    protected  void onDecrypt() {
+        String message = encryptedTextArea.getText();
 
         String keyString = keyTextField.getText();
 
         if(keyTextField.getText().length() != 8 || keyTextField.getText().isEmpty()) toast("Failed","Key must be 8 characters", Pos.CENTER);
-        if(plainTextArea.getText().isEmpty()) toast("Failed","No plain text", Pos.CENTER);
+        if(encryptedTextArea.getText().isEmpty()) toast("Failed","No encrypted text", Pos.CENTER);
 
-        if(!plainTextArea.getText().isEmpty() && !keyTextField.getText().isEmpty()){
+        if(!encryptedTextArea.getText().isEmpty() && !keyTextField.getText().isEmpty()) {
 
-            byte[] encrypted = new DesEncryption().encrypt(message, keyString);
-            if(encrypted != null) toast("Success","Encrypted successfully", Pos.TOP_LEFT);
-            else toast("Failed","An error occurred", Pos.TOP_LEFT);
+            String decrypted = new DesDecryption().decrypt(message.trim(), keyString);
 
-            encryptedTextArea.setText(Arrays.toString(encrypted));
-
-            String encryptedStr = encryptedTextArea.getText();
-
-            String decrypted = new DesDecryption().decrypt(encryptedStr, keyString);
-
-        }
-
-
-
-    }
-
-    @FXML
-    protected  void onSendEmail(){
-        String emailRegex = "^(.+)@(.+)$";
-        Pattern emailPattern = Pattern.compile(emailRegex);
-        Matcher emailMatcher = emailPattern.matcher(recipientEmail.getText());
-        MailOptions mailOptions = new MailOptions();
-
-        mailOptions.setRecipient(recipientEmail.getText());
-        mailOptions.setKey(keyTextField.getText());
-        mailOptions.setFileContent(encryptedTextArea.getText());
-
-        if(keyTextField.getText().length() != 8 || keyTextField.getText().isEmpty()) toast("Failed","Key must be 8 characters", Pos.CENTER);
-        if(plainTextArea.getText().isEmpty()) toast("Failed","No plain text", Pos.CENTER);
-        if(!emailMatcher.matches()) toast("Failed","Invalid email address", Pos.CENTER);
-
-
-
-        if(mailOptions.isComplete()) {
-            if (emailMatcher.matches()) {
-                MailSender mailSender = new MailSender();
-                mailSender.send(mailOptions);
-
-                toast("Success", "Mail sent successfully", Pos.TOP_LEFT);
-            }
+            if (decrypted != null) {
+                toast("Success", "Decrypted successfully", Pos.TOP_LEFT);
+                plainTextArea.setText(decrypted);
+            } else toast("Failed", "Incorrect key", Pos.TOP_LEFT);
         }
     }
+
 
 }

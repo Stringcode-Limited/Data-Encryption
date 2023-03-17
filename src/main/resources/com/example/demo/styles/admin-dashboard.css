@@ -19,7 +19,7 @@
   -fx-background-radius: 5;
   -fx-padding: 8 10 8 10;
   -fx-cusor: pointer;
-  -fx-background-color: rgb(84,84,208);
+  -fx-background-color: royalblue;
 }
 
 .side-bar-resize{
@@ -52,7 +52,7 @@
 }
 
 .active {
-  -fx-background-color:   rgb(84,84,208)  !important;
+  -fx-background-color:   royalblue  !important;
   /* -fx-border-width: 0 0 0 5; */
 }
 .active .label {
@@ -60,7 +60,7 @@
 }
 
 .logo {
-  -fx-text-fill: rgb(74,72,150) !important;
+  -fx-text-fill: royalblue !important;
 }
 
 .active .image-view {
@@ -200,7 +200,7 @@
 }
 
 .total-project {
-  -fx-background-color: rgb(74,72,150) !important;
+  -fx-background-color: royalblue !important;
   -fx-border-color: none !important;
 }
 .total-project .label {
@@ -236,7 +236,7 @@
 
 .quick-action-container .content .card {
   -fx-background-radius: 15;
-  -fx-background-color: rgb(74,72,150) !important ;
+  -fx-background-color: royalblue !important ;
 }
 
 .quick-action-container .content .label {
@@ -323,7 +323,7 @@
 
 .form_content .text-field:focused,
 .form_content .text-area:focused {
-  -fx-border-color: rgb(74,72,150);
+  -fx-border-color: royalblue;
   -fx-border-width: 2;
 }
 
@@ -338,7 +338,7 @@
   -fx-background-radius: 8;
   -fx-padding: 8 10 8 10;
   -fx-cusor: pointer;
-  -fx-background-color: rgb(74,72,150);
+  -fx-background-color: royalblue;
   -fx-font-family: "Hiragino Sans W7";
   -fx-font-size: 13;
 }
@@ -367,7 +367,7 @@
 }
 
 .search-input:focused {
-  -fx-border-color: rgb(74,72,150);
+  -fx-border-color: royalblue;
   -fx-border-width: 2;
 }
 .table-view {
@@ -519,7 +519,7 @@
 }
 
 .setting-tab .tab:selected {
-  -fx-border-color: rgb(74,72,150) !important;
+  -fx-border-color: royalblue !important;
   -fx-border-width: 0 0 3 0;
   -fx-font-family: "Hiragino Sans W6";
   -fx-font-size: 13;
@@ -528,7 +528,7 @@
 .back-up-ads {
   -fx-background-color: linear-gradient(
     to left,
-    rgb(74,72,150),
+    royalblue,
     rgb(65, 177, 225)
   );
   -fx-alignment: CENTER;
@@ -643,7 +643,7 @@
 }
 
 .top-section-background {
-  -fx-background-color: rgb(74,72,150);
+  -fx-background-color: royalblue;
   -fx-border-width: 0 0 2 0;
 }
 .rounded {
@@ -678,7 +678,7 @@
 }
 
 .project-manger-container .tab:selected {
-  -fx-border-color: rgb(74,72,150) !important;
+  -fx-border-color: royalblue !important;
   -fx-border-width: 0 0 3 0;
   -fx-font-family: "Hiragino Sans W6";
   -fx-font-size: 13;
