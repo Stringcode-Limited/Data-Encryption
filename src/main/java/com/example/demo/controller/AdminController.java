@@ -34,7 +34,6 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.demo.enums.Validation.EMAIL;
 
 public class AdminController extends Thread implements Initializable {
     final FileChooser fileChooser = new FileChooser();
