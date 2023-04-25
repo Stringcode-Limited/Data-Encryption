@@ -28,8 +28,7 @@ public class MailSender {
 
     // send the file as an email attachment using JavaMail API
     String recipient = mailOptions.getRecipient();
-    String username = "jedidiahbasil@gmail.com";
-    String password = "nxnbbxrzilbxmhhb";
+
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

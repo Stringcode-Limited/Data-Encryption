@@ -57,6 +57,10 @@ public class AdminController extends Thread implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         FileChooser fileChooser = new FileChooser();
 
+        encryptedTextArea.setWrapText(true);
+        plainTextArea.setWrapText(true);
+
+
         encrypBtn.setDisable(true);
 
         plainTextArea.setOnKeyPressed(e ->{
